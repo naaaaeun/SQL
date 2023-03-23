@@ -1,0 +1,404 @@
+/*
+ * 
+ * 테이블 생성
+ */
+
+CREATE TABLE emp (
+	empno		number(10,0)		PRIMARY KEY,
+	deptno		number(4,0)			NOT NULL,
+	name		varchar(10)			NULL,
+	hiredate	date				NULL,
+	job			VARCHAR(255)		NULL,
+	bonus		VARCHAR(255)		NULL
+);
+
+
+CREATE TABLE dept (
+	deptno		number(4,0)		PRIMARY KEY,
+	dname		varchar(10)		NULL
+);
+
+CREATE TABLE grade (
+	empno	number(10,0)		NOT NULL,
+	grade	number(1,0)			NULL,
+	memo	varchar(1000)		NULL
+);
+
+CREATE TABLE SAL (
+	salno	varchar(20)		NOT NULL,
+	sal		number(10,0)		NULL
+);
+
+CREATE TABLE bonus (
+	bonusgrade		number(1,0)		NOT NULL,
+	hibonus			number(10,0)			NULL,
+	lobonus			number(10,0)			NULL
+);
+
+/*
+ * fk 지정
+ * 
+ */
+
+ALTER TABLE EMP
+ADD CONSTRAINT fk_deptno foreign KEY(deptno) references dept(deptno);
+
+ALTER TABLE GRADE 
+ADD CONSTRAINT fk_empno foreign KEY(empno) references emp(empno);
+
+
+/*
+ * dept
+ * insert
+ * 
+ */
+
+INSERT INTO DEPT
+(DEPTNO, DNAME)
+VALUES(9561, '재무부');
+INSERT INTO DEPT
+(DEPTNO, DNAME)
+VALUES(1104, '총무부');
+INSERT INTO DEPT
+(DEPTNO, DNAME)
+VALUES(9876, '인사부');
+INSERT INTO DEPT
+(DEPTNO, DNAME)
+VALUES(4567, '기획부');
+INSERT INTO DEPT
+(DEPTNO, DNAME)
+VALUES(1000, '비서부');
+
+/*
+ * emp
+ * insert
+ * 
+ */
+
+
+INSERT INTO TEST.EMP
+(EMPNO, DEPTNO, NAME, HIREDATE, JOB, BONUS)
+VALUES(1234, 9561, '이나은', '2005-07-25', '부장', 40000);
+
+INSERT INTO TEST.EMP
+(EMPNO, DEPTNO, NAME, HIREDATE, JOB, BONUS)
+VALUES(1235, 9561, '김사랑', '2006-07-25', '행원', 30000);
+
+INSERT INTO TEST.EMP
+(EMPNO, DEPTNO, NAME, HIREDATE, JOB, BONUS)
+VALUES(1236, 9561, '전지현', '2007-07-25', '행원', 30000);
+
+INSERT INTO TEST.EMP
+(EMPNO, DEPTNO, NAME, HIREDATE, JOB, BONUS)
+VALUES(1237, 9561, '이도현', '2008-07-25', '행원', 10000);
+
+INSERT INTO TEST.EMP
+(EMPNO, DEPTNO, NAME, HIREDATE, JOB, BONUS)
+VALUES(1238, 9561, '유연석', '2001-07-25', '행원', 30000);
+--인사부
+
+INSERT INTO TEST.EMP
+(EMPNO, DEPTNO, NAME, HIREDATE, JOB, BONUS)
+VALUES(3123, 9876, '박선미', '2003-12-26', '부장', 90000);
+
+INSERT INTO TEST.EMP
+(EMPNO, DEPTNO, NAME, HIREDATE, JOB, BONUS)
+VALUES(3124, 9876, '김보고', '2016-07-09', '행원', 80000);
+
+INSERT INTO TEST.EMP
+(EMPNO, DEPTNO, NAME, HIREDATE, JOB, BONUS)
+VALUES(3125, 9876, '고차장', '1998-08-01', '행원', 10000);
+
+INSERT INTO TEST.EMP
+(EMPNO, DEPTNO, NAME, HIREDATE, JOB, BONUS)
+VALUES(3126, 9876, '최우식', '2019-12-26', '행원', 50000);
+
+INSERT INTO TEST.EMP
+(EMPNO, DEPTNO, NAME, HIREDATE, JOB, BONUS)
+VALUES(3127, 9876, '박해일', '2003-03-02', '행원', 70000);
+
+--비서실
+
+INSERT INTO TEST.EMP 
+(EMPNO, DEPTNO, NAME, HIREDATE, JOB, BONUS) 
+VALUES(5125, 1000, '신혜림', '2006-12-26', '부장', 30000); 
+
+INSERT INTO TEST.EMP 
+(EMPNO, DEPTNO, NAME, HIREDATE, JOB, BONUS) 
+VALUES(5126, 1000, '김회장', '1989-02-19', '회장', 90000); 
+
+INSERT INTO TEST.EMP 
+(EMPNO, DEPTNO, NAME, HIREDATE, JOB, BONUS) 
+VALUES(5127, 1000, '김행장', '2000-04-28', '행장', 80000); 
+
+INSERT INTO TEST.EMP 
+(EMPNO, DEPTNO, NAME, HIREDATE, JOB, BONUS) 
+VALUES(5128, 1000, '김임원', '2003-12-21', '임원', 50000); 
+
+INSERT INTO TEST.EMP 
+(EMPNO, DEPTNO, NAME, HIREDATE, JOB, BONUS) 
+VALUES(5129, 1000, '김행원', '2010-07-29', '행원', 10000);
+
+--총무부
+INSERT INTO TEST.EMP 
+(EMPNO, DEPTNO, NAME, HIREDATE, JOB, BONUS) 
+VALUES(2234, 1104, '유성진', '2011-12-19', '부장', 50000); 
+
+INSERT INTO TEST.EMP 
+(EMPNO, DEPTNO, NAME, HIREDATE, JOB, BONUS) 
+VALUES(2235, 1104, '도람푸', '2015-12-25', '행원', 80000); 
+
+INSERT INTO TEST.EMP 
+(EMPNO, DEPTNO, NAME, HIREDATE, JOB, BONUS) 
+VALUES(2236, 1104, '푸티니', '2022-12-25', '행원', 90000); 
+
+INSERT INTO TEST.EMP 
+(EMPNO, DEPTNO, NAME, HIREDATE, JOB, BONUS) 
+VALUES(2237, 1104, '진핑이', '2021-12-25', '행원', 70000); 
+
+INSERT INTO TEST.EMP 
+(EMPNO, DEPTNO, NAME, HIREDATE, JOB, BONUS) 
+VALUES(2238, 1104, '데프콘', '2019-12-25', '행원', 10000);
+
+/*
+ * grade
+ * insert
+ * 
+ */
+
+INSERT INTO GRADE
+(EMPNO, GRADE, MEMO)
+VALUES(5125, 9, '아주 우수하고 훌륭함');
+
+INSERT INTO GRADE
+(EMPNO, GRADE, MEMO)
+VALUES(5126, 8, '맡은 책임에 대해 최선을 다함');
+
+INSERT INTO GRADE
+(EMPNO, GRADE, MEMO)
+VALUES(5127, 7, '아주 근면성실함');
+INSERT INTO GRADE
+(EMPNO, GRADE, MEMO)
+VALUES(5128, 5, '굉장히 책임감이 강함');
+INSERT INTO GRADE
+(EMPNO, GRADE, MEMO)
+VALUES(5129, 6, '입사한지 얼마 안 되었지만 로열티가 높음');
+
+
+INSERT INTO GRADE
+(EMPNO, GRADE, MEMO)
+VALUES(2234, 9, '장점: 성실함 단점: 공부하기 싫어함.');
+INSERT INTO GRADE
+(EMPNO, GRADE, MEMO)
+VALUES(2235, 7, '장점: 화끈함. 추진력있음 단점: 맨날 소리지름');
+INSERT INTO GRADE
+(EMPNO, GRADE, MEMO)
+VALUES(2236, 1, '장점: 리더쉽있음. 단점: 싸움 좋아함');
+INSERT INTO GRADE
+(EMPNO, GRADE, MEMO)
+VALUES(2237, 6, '장점: 나름 조용함. 단점: 2등 콤플렉스 심함.');
+INSERT INTO GRADE
+(EMPNO, GRADE, MEMO)
+VALUES(2238, 9, '장점: 랩 잘함. 입담 좋음 단점: 못생김.');
+
+
+INSERT INTO GRADE
+(EMPNO, GRADE, MEMO)
+VALUES(3123, 9, '이 시대의 참 리더, 진정한 리더란 무엇인가 몸소 보여주시는 분, 부서 부하 직원들의 평판이 최상');
+INSERT INTO GRADE
+(EMPNO, GRADE, MEMO)
+VALUES(3124, 8, '차분하고 성실하게 임함, 업무 처리 속도가 다소 느리나, 꼼꼼하고 철두철미함');
+INSERT INTO GRADE
+(EMPNO, GRADE, MEMO)
+VALUES(3125, 1, '기본적으로 탑재된 이기주의, 입행 저년차 직원들을 수족 부리듯 함');
+INSERT INTO GRADE
+(EMPNO, GRADE, MEMO)
+VALUES(3126, 6, '조직 친화적이고 융통성 있는 MZ, MZ에 대한 편견을 깨준 팀원');
+INSERT INTO GRADE
+(EMPNO, GRADE, MEMO)
+VALUES(3127, 5, '평소 예민한 스타일, 함께 근무하면 자꾸 눈치를 살피게 됨, 그러나 업무 처리 능력만은 뛰어남');
+
+INSERT INTO GRADE
+(EMPNO, GRADE, MEMO)
+VALUES(1234, 9, '우수하나 잠이 많음');
+INSERT INTO GRADE
+(EMPNO, GRADE, MEMO)
+VALUES(1235, 8, '근면성실하나 창의성이 없음');
+INSERT INTO GRADE
+(EMPNO, GRADE, MEMO)
+VALUES(1236, 7, '최선을 다하며 로열티가 높음');
+INSERT INTO GRADE
+(EMPNO, GRADE, MEMO)
+VALUES(1237, 6, '실수가 잦으나 노력함');
+INSERT INTO GRADE
+(EMPNO, GRADE, MEMO)
+VALUES(1238, 6, '소심하나 꼼꼼함');
+
+
+SELECT *FROM GRADE g ORDER BY EMPNO ;
+
+UPDATE EMP
+SET BONUS  = 90000   
+WHERE EMPNO =2236;
+
+TRUNCATE table GRADE; 
+
+DELETE FROM GRADE g WHERE EMPNO =2237;
+
+
+
+/*
+ * sal
+ * insert
+ * 
+ */
+
+INSERT INTO TEST.SAL
+(SALNO, SAL)
+VALUES('회장', 300000);
+
+INSERT INTO TEST.SAL
+(SALNO, SAL)
+VALUES('행장', 200000);
+
+INSERT INTO TEST.SAL
+(SALNO, SAL)
+VALUES('임원', 100000);
+
+INSERT INTO TEST.SAL
+(SALNO, SAL)
+VALUES('부장', 15000);
+
+INSERT INTO TEST.SAL
+(SALNO, SAL)
+VALUES('행원', 5000);
+
+/*
+ * bonus
+ * insert
+ * 
+ */
+
+INSERT INTO TEST.BONUS
+(BONUSGRADE, HIBONUS, LOBONUS)
+VALUES(1, 19999, 10000);
+
+INSERT INTO TEST.BONUS
+(BONUSGRADE, HIBONUS, LOBONUS)
+VALUES(2, 29999, 20000);
+
+INSERT INTO TEST.BONUS
+(BONUSGRADE, HIBONUS, LOBONUS)
+VALUES(3, 39999, 30000);
+
+INSERT INTO TEST.BONUS
+(BONUSGRADE, HIBONUS, LOBONUS)
+VALUES(4, 49999, 40000);
+
+INSERT INTO TEST.BONUS
+(BONUSGRADE, HIBONUS, LOBONUS)
+VALUES(5, 59999, 50000);
+
+INSERT INTO TEST.BONUS
+(BONUSGRADE, HIBONUS, LOBONUS)
+VALUES(6, 69999, 60000);
+
+INSERT INTO TEST.BONUS
+(BONUSGRADE, HIBONUS, LOBONUS)
+VALUES(7, 79999, 70000);
+
+INSERT INTO TEST.BONUS
+(BONUSGRADE, HIBONUS, LOBONUS)
+VALUES(8, 89999, 80000);
+
+INSERT INTO TEST.BONUS
+(BONUSGRADE, HIBONUS, LOBONUS)
+VALUES(9, 99999, 90000);
+
+
+/*
+ * 부서별 급여 조회 기능 추가해주세요
+ */
+/*
+ * 비서부 예시
+ */
+
+
+SELECT EMPNO AS 직원번호
+, NAME  AS 직원명
+, TO_CHAR(HIREDATE, 'YYYY/MM/DD')  AS 입사일
+, JOB  AS 직급
+, e.BONUS + s.SAL AS 총급여
+FROM EMP e , SAL s 
+WHERE DEPTNO = 1000
+	AND  e.job=s.SALNO 
+;
+
+
+/*
+ * 급여 조회 기능 추가해주세요
+ * 부서별 고과 조회 기능 추가해주세요.
+ * 고과 대비 부적합한 성과를 수령하는 직원을 분류할 수 있는 기능 추가해주세요.
+ */
+
+
+/*
+-부서별 인원
+-부서별총급여
+-부서별 평균 급여
+-부서별 최대 급여, 최소급여
+ */
+
+SELECT e.DEPTNO 
+, d.DNAME 
+, count(e.EMPNO) AS 부서별_인원
+, sum(e.BONUS + s.SAL) AS 총급여
+, round(avg(e.BONUS + s.SAL)) AS 평균급여
+, min(e.BONUS + s.SAL) AS 최소급여
+, max(e.BONUS + s.SAL) AS 최대급여
+FROM DEPT d, EMP e, SAL s
+WHERE e.job=s.SALNO 
+	AND e.DEPTNO =d.DEPTNO 
+GROUP BY e.DEPTNO ,d.DNAME 
+ORDER BY 총급여 DESC
+;
+
+
+/*
+-고과 조회
+ */
+
+SELECT e.DEPTNO AS 부서번호
+, d.DNAME AS 부서명
+, e.EMPNO AS 직원번호
+, e.NAME AS 직원명
+, g.GRADE AS 고과
+,g.MEMO AS 평가내용
+FROM DEPT d , EMP e, GRADE g 
+WHERE e.EMPNO =g.EMPNO  
+	AND e.DEPTNO =d.DEPTNO 
+order BY e.DEPTNO, g.GRADE desc ;
+
+
+
+
+
+/*
+ * 기능 정의
+ * 월급루팡 찾아내기~!
+ */
+
+SELECT e.EMPNO					AS 직원번호
+	, e.NAME 					AS 직원이름
+	, b.BONUSGRADE 				AS 성과급
+	, g.GRADE					AS 평가
+	, (g.GRADE-b.BONUSGRADE)	AS 성과적합
+	, CASE WHEN (g.GRADE-b.BONUSGRADE) < 0 	THEN 'fired'
+	WHEN (g.GRADE-b.BONUSGRADE) = 0 	THEN 'stay' 
+	ELSE 'promotion' END  AS 진단결과
+FROM EMP e LEFT OUTER JOIN BONUS b 
+			ON e.BONUS BETWEEN b.LOBONUS AND b.HIBONUS  
+			LEFT OUTER JOIN GRADE g
+			ON e.EMPNO = g.EMPNO 
+ORDER BY 성과적합 DESC 
+;
